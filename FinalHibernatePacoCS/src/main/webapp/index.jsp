@@ -7,7 +7,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <c:set var="contexto" scope="application" value="${pageContext.request.contextPath}" />
-<c:set var="estilos" scope="application" value="${contexto}/CSS/estilos.css" />
+<c:set var="estilos" scope="application" value="/CSS/layouts/side-menu.css" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,8 +30,8 @@
                         <li class="pure-menu-item menu-item-divided pure-menu-selected">
                             <a href="${contexto}" class="pure-menu-link">Inicio</a>
                         </li>
-                        <li class="pure-menu-item"><a href="${contexto}/Eleccion?op=acceder" class="pure-menu-link">Accede</a></li>
-                        <li class="pure-menu-item"><a href="${contexto}/Eleccion?op=registrar" class="pure-menu-link">Registrate</a></li>
+                        <li class="pure-menu-item"><a href="${contexto}/JSP/formularioAcceso.jsp" class="pure-menu-link">Accede</a></li>
+                        <li class="pure-menu-item"><a href="${contexto}/JSP/formularioRegistro.jsp" class="pure-menu-link">Registrate</a></li>
                     </ul>
                 </div>
                 <div>
