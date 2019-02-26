@@ -9,5 +9,12 @@
     <property name="hibernate.connection.datasource">java:comp/env/jdbc/FH</property>
     
     <property name="hibernate.hbm2ddl.auto">update</property>
+    
+    <mapping class="es.albarregas.beans.Usuario" />
+    <mapping class="es.albarregas.beans.Ciclo" />
+    <mapping class="es.albarregas.beans.Modulo" />
+    <mapping class="es.albarregas.beans.Tutor" />
+    <mapping class="es.albarregas.beans.Administrador" />
+    <mapping class="es.albarregas.beans.Alumno" />
   </session-factory>
 </hibernate-configuration>

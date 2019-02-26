@@ -1,0 +1,14 @@
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/albarregas/beans/Ciclo.java
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/albarregas/beans/Alumno.java
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/albarregas/beans/Modulo.java
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/albarregas/daofactory/MySQLDAOFactory.java
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/albarregas/beans/Usuario.java
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/abarregas/filters/UTF8Filter.java
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/albarregas/beans/Administrador.java
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/albarregas/beans/Nota.java
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/albarregas/dao/IGenericoDAO.java
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/albarregas/beans/Familia.java
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/albarregas/dao/GenericoDAO.java
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/albarregas/daofactory/DAOFactory.java
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/albarregas/beans/Tutor.java
+/Users/paco/NetBeansProjects/Entorno Servidor/Hibernate/FinalHibernatePacoCS/FinalHibernatePacoCSCopia/src/main/java/es/albarregas/persistencia/HibernateUtil.java

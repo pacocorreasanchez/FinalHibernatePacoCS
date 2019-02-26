@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -22,19 +25,24 @@ import javax.persistence.TemporalType;
  */
 @Entity
 public class Alumno extends Usuario{
-    protected enum genero {
-        MUJER,
-        HOMBRE
-    };
     
     @Temporal(TemporalType.DATE)
     protected Date fechaNacimiento;
     
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     protected Ciclo ciclo;
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    /*@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     protected List<Nota> notas = new ArrayList<>();
+    
+    public enum Genero {
+        MUJER,
+        HOMBRE
+    };
+    @Column(name = "Genero")
+    @Enumerated(EnumType.STRING)*/
+    @Column(name = "Genero")
+    protected String genero;
 
     public Alumno() {
     }
@@ -44,8 +52,8 @@ public class Alumno extends Usuario{
         this.ciclo = ciclo;
     }
 
-    public Alumno(Date fechaNacimiento, Ciclo ciclo, int idUsuario, String email, String password, String nombre, String apellidos, String dni, Date ultimoAcceso, String avatar) {
-        super(idUsuario, email, password, nombre, apellidos, dni, ultimoAcceso, avatar);
+    public Alumno(Date fechaNacimiento, Ciclo ciclo, String email, String password, String repitePassword, String nombre, String apellidos, Rol rol, String nif, Date UltimoAcceso) {
+        super(email, password, repitePassword, nombre, apellidos, rol, nif, UltimoAcceso);
         this.fechaNacimiento = fechaNacimiento;
         this.ciclo = ciclo;
     }
@@ -66,13 +74,21 @@ public class Alumno extends Usuario{
         this.ciclo = ciclo;
     }
 
-    public List<Nota> getNotas() {
+    /*public List<Nota> getNotas() {
         return notas;
     }
 
     public void setNotas(List<Nota> notas) {
         this.notas = notas;
     }
-    
+    */
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
     
 }

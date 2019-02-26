@@ -27,19 +27,18 @@
 
                     <ul class="pure-menu-list">
                         <li class="pure-menu-item"><a href="${contexto}" class="pure-menu-link">Inicio</a></li>
-                        <li class="pure-menu-item menu-item-divided pure-menu-selected"><a href="${contexto}/Eleccion?op=acceder" class="pure-menu-link">Accede</a></li>
-                        <li class="pure-menu-item"><a href="${contexto}/Eleccion?op=registrar" class="pure-menu-link">Registrate</a></li>
+                        <li class="pure-menu-item menu-item-divided pure-menu-selected"><a href="${contexto}/Eleccion?op=acceso" class="pure-menu-link">Accede</a></li>
                     </ul>
                 </div>
                 <div>
-                    <img id="logoCorporativo" src="../IMG/logo.png" alt="logo corporativo">
+                    <img id="logoCorporativo" src="${contexto}/IMG/logo.png" alt="logo corporativo">
                 </div>
             </div>
 
             <div id="main">
                 <div class="header">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="../IMG/logo.png" alt="logo corporativo">
+                        <img class="pure-img-responsive" src="${contexto}/IMG/logo.png" alt="logo corporativo">
                     </div>
                     <h1>Education School Rating</h1>
                     <h2>ESR</h2>
@@ -47,18 +46,17 @@
 
                 <div class="content">
                     <h2 class="content-subhead">Accede</h2>
-                    <form class="pure-form">
+                    <form class="pure-form" method="post" action="Controlador?op=acceso">
                         <fieldset>
                             <legend>Formulario de acceso</legend>
-
-                            <input type="email" placeholder="Email">
-                            <input type="password" placeholder="Password">
+                            <input name="email" type="email" placeholder="Email">
+                            <input name="password" type="password" placeholder="Password">
 
                             <label for="remember">
-                                <input id="remember" type="checkbox"> Remember me
+                                <input id="remember" type="checkbox"> Recuerdame
                             </label>
 
-                            <button type="submit" class="pure-button pure-button-primary">Acceder</button>
+                            <input type="submit" value="Acceder" class="pure-button pure-button-primary" />
                         </fieldset>
                     </form>
 

@@ -1,71 +1,103 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package es.albarregas.beans;
 
+import es.albarregas.exceptions.BussinessException.Caption;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
+ *
  *
  * @author paco
  */
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-    protected int idUsuario;
-    
-    @NotNull(message="No puede estar vacío")
-    @Column(unique=true)
-    @Pattern(regexp=".+@.+\\..+", message="Email invalido")
-    protected String email;
-    
-    @NotNull(message="No puede estar vacío")
-    protected String password;
-    
-    protected String nombre;
-    protected String apellidos;
-    protected enum Rol {
-        ADMIN,
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "IdUsuario")
+    int idUsuario;
+
+    @NotNull
+    @NotBlank
+    @Size(max = 50)
+    @Email
+    @Column(name = "Email",unique = true)
+    private String email;
+
+    @NotBlank
+    @Column(name = "Password")
+    @Caption("contraseña")
+    private String password;
+    @NotBlank
+    @Transient
+    private String repitePassword;
+
+    @NotNull
+    @Column(name = "Nombre")
+    @Size(min = 2, max = 20)
+    private String nombre;
+
+    @Size(max = 60)
+    @Column(name = "Apellidos")
+    private String apellidos;
+
+    public enum Rol {
+        ADMINISTRADOR,
         TUTOR,
         ALUMNO
     };
-    
-    @Column(unique=true)
-    protected String dni;
-    
+    @Column(name = "Rol")
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
+
+    @Pattern(regexp = "[0-9]{8}[A-Z]{1}", message = "El nif debe contener 8 dígitos y una letra mayúscula")
+    @Size(max = 9)
+    @Column(name = "NIF")
+    private String nif;
+
+    @Column(name = "UltimoAcceso")
     @Temporal(TemporalType.DATE)
-    protected Date ultimoAcceso;
-    
-    protected String avatar;
+    private Date UltimoAcceso;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String email, String password, String nombre, String apellidos, String dni, Date ultimoAcceso, String avatar) {
-        this.idUsuario = idUsuario;
+    public Usuario(String email, String password, String repitePassword, String nombre, String apellidos, Rol rol, String nif, Date UltimoAcceso) {
         this.email = email;
         this.password = password;
+        this.repitePassword = repitePassword;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.dni = dni;
-        this.ultimoAcceso = ultimoAcceso;
-        this.avatar = avatar;
+        this.rol = rol;
+        this.nif = nif;
+        this.UltimoAcceso = UltimoAcceso;
+    }
+
+    
+
+    @AssertTrue(message = "Las contraseñas deben coincidir")
+    private boolean isPasswords() {
+        return this.password.equals(this.repitePassword);
     }
 
     public int getIdUsuario() {
@@ -108,30 +140,37 @@ public class Usuario implements Serializable{
         this.apellidos = apellidos;
     }
 
-    public String getDni() {
-        return dni;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    public String getNif() {
+        return nif;
+    }
+
+    public void setNif(String nif) {
+        this.nif = nif;
     }
 
     public Date getUltimoAcceso() {
-        return ultimoAcceso;
+        return UltimoAcceso;
     }
 
-    public void setUltimoAcceso(Date ultimoAcceso) {
-        this.ultimoAcceso = ultimoAcceso;
+    public void setUltimoAcceso(Date UltimoAcceso) {
+        this.UltimoAcceso = UltimoAcceso;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getRepitePassword() {
+        return repitePassword;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setRepitePassword(String repitePassword) {
+        this.repitePassword = repitePassword;
     }
-    
-    
+
     
 }

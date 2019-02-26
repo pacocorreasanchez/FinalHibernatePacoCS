@@ -6,8 +6,8 @@
 package es.albarregas.beans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,29 +24,44 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ciclos")
-public class Ciclo implements Serializable{
-    
+public class Ciclo implements Serializable {
+
     @Id
     @Column(name = "IdCiclo")
     protected String idCiclo;
-    
+
     @Column(name = "Abreviatura")
     protected String abreviatura;
-    
+
     @Column(name = "HorasFCT")
     protected int horasFCT;
-    
+
     @Column(name = "Ley")
     protected String ley;
-    
+
     @Column(name = "Nombre")
     protected String nombre;
-    
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "ciclosmodulos",
             joinColumns = @JoinColumn(name = "IdCiclo"),
             inverseJoinColumns = @JoinColumn(name = "IdModulo"))
-    protected List<Modulo> modulos = new ArrayList<>();
+    protected Set<Modulo> modulos = new HashSet<>();
+
+    public Ciclo() {
+    }
+    
+    
+
+    public Ciclo(String idCiclo, String abreviatura, int horasFCT, String ley, String nombre) {
+        this.idCiclo = idCiclo;
+        this.abreviatura = abreviatura;
+        this.horasFCT = horasFCT;
+        this.ley = ley;
+        this.nombre = nombre;
+    }
+    
+    
 
     public String getIdCiclo() {
         return idCiclo;
@@ -88,12 +103,13 @@ public class Ciclo implements Serializable{
         this.nombre = nombre;
     }
 
-    public List<Modulo> getModulos() {
+    public Set<Modulo> getModulos() {
         return modulos;
     }
 
-    public void setModulos(List<Modulo> modulos) {
+    public void setModulos(Set<Modulo> modulos) {
         this.modulos = modulos;
     }
-    
+
+
 }

@@ -17,19 +17,19 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Tutor extends Usuario{
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     protected Ciclo ciclo;
+    
+    public Tutor() {
+    }
 
     public Tutor(Ciclo ciclo) {
         this.ciclo = ciclo;
     }
 
-    public Tutor(Ciclo ciclo, int idUsuario, String email, String password, String nombre, String apellidos, String dni, Date ultimoAcceso, String avatar) {
-        super(idUsuario, email, password, nombre, apellidos, dni, ultimoAcceso, avatar);
+    public Tutor(Ciclo ciclo, String email, String password, String repitePassword, String nombre, String apellidos, Rol rol, String nif, Date UltimoAcceso) {
+        super(email, password, repitePassword, nombre, apellidos, rol, nif, UltimoAcceso);
         this.ciclo = ciclo;
-    }
-
-    public Tutor() {
     }
 
     public Ciclo getCiclo() {
@@ -39,5 +39,5 @@ public class Tutor extends Usuario{
     public void setCiclo(Ciclo ciclo) {
         this.ciclo = ciclo;
     }
-    
+
 }

@@ -30,8 +30,8 @@
                         <li class="pure-menu-item menu-item-divided pure-menu-selected">
                             <a href="${contexto}" class="pure-menu-link">Inicio</a>
                         </li>
-                        <li class="pure-menu-item"><a href="${contexto}/JSP/formularioAcceso.jsp" class="pure-menu-link">Accede</a></li>
-                        <li class="pure-menu-item"><a href="${contexto}/JSP/formularioRegistro.jsp" class="pure-menu-link">Registrate</a></li>
+                        <li class="pure-menu-item"><a href="${contexto}/Eleccion?op=acceso" class="pure-menu-link">Accede</a></li>
+                        <!--<li class="pure-menu-item"><a href="${contexto}/Eleccion?op=registro" class="pure-menu-link">Registro Admin</a></li>-->
                     </ul>
                 </div>
                 <div>

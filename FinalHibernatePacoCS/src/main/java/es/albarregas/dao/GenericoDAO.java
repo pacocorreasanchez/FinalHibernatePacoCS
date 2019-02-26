@@ -5,13 +5,18 @@
  */
 package es.albarregas.dao;
 
+import es.albarregas.beans.Usuario;
+import es.albarregas.exceptions.BussinessException;
 import es.albarregas.persistencia.HibernateUtil;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 /**
@@ -42,31 +47,33 @@ public class GenericoDAO<T> implements IGenericoDAO<T> {
     } 
 
     @Override
-    public void insertOrUpdate(T objeto) {
+    public void insertOrUpdate(T objeto) throws BussinessException{
         try {
             startTransaction();
             sesion.saveOrUpdate(objeto);
             sesion.flush();
-            
-        } catch (HibernateException he){
+        } catch (org.hibernate.exception.ConstraintViolationException he){
             handleExcepcion(he);
+            throw new BussinessException(he);
         } finally {
             endTransaction();
         }
     }
 
     @Override
-    public <T> List<T> get(String entidad) {
+    public <T> Set<T> get(String entidad) {
         List<T> listadoResultados = null;
+        Set<T> targetSet = null;
         try {
             startTransaction();
             listadoResultados = sesion.createQuery(" from " + entidad).list();
+            targetSet = new HashSet<T>(listadoResultados);
         } catch(HibernateException he){
             this.handleExcepcion(he);
         } finally {
             this.endTransaction();
         }
-        return listadoResultados;
+        return targetSet;
     }
 
     @Override
@@ -84,7 +91,7 @@ public class GenericoDAO<T> implements IGenericoDAO<T> {
         
         return objetoRecuperado;
     }
-
+    
     @Override
     public void delete(T objeto) {
         try {
@@ -96,5 +103,21 @@ public class GenericoDAO<T> implements IGenericoDAO<T> {
             this.endTransaction();
         }
     }
+
+    //from Cat where name='Fritz'
+    @Override
+    public <T> List<T> getWhere(String whereClause, Class<T> claseEntidad) {
+        List<T> objetosRecuperado = null;
+        try {
+            startTransaction();
+            Query query = sesion.createQuery("from " + claseEntidad.getSimpleName()+ " WHERE " + whereClause);
+            objetosRecuperado = query.list();
+        } catch(HibernateException he){
+            this.handleExcepcion(he);
+        } finally {
+            this.endTransaction();
+        }
+        return objetosRecuperado;
+}
     
  }

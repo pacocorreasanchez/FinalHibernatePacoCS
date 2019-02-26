@@ -1,0 +1,16 @@
+es/albarregas/beans/Nota.class
+es/albarregas/dao/GenericoDAO.class
+es/albarregas/daofactory/MySQLDAOFactory.class
+es/albarregas/beans/Familia.class
+es/albarregas/beans/Administrador.class
+es/albarregas/beans/Alumno.class
+es/albarregas/persistencia/HibernateUtil.class
+es/albarregas/daofactory/DAOFactory.class
+es/abarregas/filters/UTF8Filter.class
+es/albarregas/beans/Modulo.class
+es/albarregas/beans/Ciclo.class
+es/albarregas/dao/IGenericoDAO.class
+es/albarregas/beans/Usuario.class
+es/albarregas/beans/Alumno$genero.class
+es/albarregas/beans/Usuario$Rol.class
+es/albarregas/beans/Tutor.class

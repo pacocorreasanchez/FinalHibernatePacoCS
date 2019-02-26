@@ -6,7 +6,9 @@
 package es.albarregas.beans;
 
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
@@ -14,18 +16,19 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Administrador extends Usuario{
-    protected boolean modoDios;
+    @Column(name = "ModoDios")
+    private boolean modoDios;
 
+    public Administrador() {
+    }
+    
     public Administrador(boolean modoDios) {
         this.modoDios = modoDios;
     }
 
-    public Administrador(boolean modoDios, int idUsuario, String email, String password, String nombre, String apellidos, String dni, Date ultimoAcceso, String avatar) {
-        super(idUsuario, email, password, nombre, apellidos, dni, ultimoAcceso, avatar);
+    public Administrador(boolean modoDios, String email, String password, String repitePassword, String nombre, String apellidos, Rol rol, String nif, Date UltimoAcceso) {
+        super(email, password, repitePassword, nombre, apellidos, rol, nif, UltimoAcceso);
         this.modoDios = modoDios;
-    }
-
-    public Administrador() {
     }
 
     public boolean isModoDios() {
@@ -35,5 +38,6 @@ public class Administrador extends Usuario{
     public void setModoDios(boolean modoDios) {
         this.modoDios = modoDios;
     }
+    
     
 }
