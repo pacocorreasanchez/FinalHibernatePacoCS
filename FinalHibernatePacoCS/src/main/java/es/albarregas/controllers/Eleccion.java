@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package es.albarregas.controllers;
-
+//Todas las importaciones son necesarias para el código comentado de más abajo
 import es.albarregas.Utilities.Utilities;
 import es.albarregas.beans.Administrador;
 import es.albarregas.beans.Usuario;

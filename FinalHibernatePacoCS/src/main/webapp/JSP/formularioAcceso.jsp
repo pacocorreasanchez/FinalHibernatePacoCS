@@ -50,10 +50,10 @@
                         <fieldset>
                             <legend>Formulario de acceso</legend>
                             <input name="email" type="email" placeholder="Email">
-                            <input name="password" type="password" placeholder="Password">
+                            <input name="password" type="password" placeholder="Password" value="${psw}">
 
                             <label for="remember">
-                                <input id="remember" type="checkbox"> Recuerdame
+                                <input name="remember" id="remember" type="checkbox"> Recuerdame
                             </label>
 
                             <input type="submit" value="Acceder" class="pure-button pure-button-primary" />

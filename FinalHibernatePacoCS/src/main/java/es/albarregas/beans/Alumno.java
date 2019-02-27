@@ -11,8 +11,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -29,18 +27,12 @@ public class Alumno extends Usuario{
     @Temporal(TemporalType.DATE)
     protected Date fechaNacimiento;
     
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     protected Ciclo ciclo;
     
-    /*@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     protected List<Nota> notas = new ArrayList<>();
     
-    public enum Genero {
-        MUJER,
-        HOMBRE
-    };
-    @Column(name = "Genero")
-    @Enumerated(EnumType.STRING)*/
     @Column(name = "Genero")
     protected String genero;
 
@@ -74,14 +66,13 @@ public class Alumno extends Usuario{
         this.ciclo = ciclo;
     }
 
-    /*public List<Nota> getNotas() {
+    public List<Nota> getNotas() {
         return notas;
     }
 
     public void setNotas(List<Nota> notas) {
         this.notas = notas;
     }
-    */
 
     public String getGenero() {
         return genero;

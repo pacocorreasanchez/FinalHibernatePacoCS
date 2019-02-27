@@ -16,6 +16,7 @@
         <title>Index Tutor</title>
     </head>
     <body>
+
         <div id="layout">
             <!-- Menu toggle -->
             <a href="#menu" id="menuLink" class="menu-link">
@@ -28,11 +29,21 @@
                     <a class="pure-menu-heading" href="#">TUTOR</a>
 
                     <ul class="pure-menu-list">
-                        <li class="pure-menu-item menu-item-divided pure-menu-selected">
-                            <a href="${contexto}" class="pure-menu-link">Inicio</a>
+                        <li class="pure-menu-item"><a href="${contexto}/EleccionTutor?op=inicio" class="pure-menu-link">Inicio</a></li>
+                        <li class="pure-menu-item">
+                            <form action="${contexto}/EleccionTutor?op=actualizar" method="post">
+                                <input type="hidden" name="_idUsuario" value="${idTutor}"/>
+                                <input type="hidden" name="_idCiclo" value="${idCiclo}"/>
+                                <input class="botonAltaAlumno" type="submit" value="Asignar Notas" class="pure-menu-link">
+                            </form>
                         </li>
-                        <li class="pure-menu-item"><a href="${contexto}/EleccionTutor?op=actualizar" class="pure-menu-link">Actualizar</a></li>
-                        <li class="pure-menu-item"><a href="${contexto}/EleccionTutor?op=alta" class="pure-menu-link">Alta alumnos</a></li>
+                        <li class="pure-menu-item">
+                            <form action="${contexto}/EleccionTutor?op=alta" method="post">
+                                <input type="hidden" name="_idUsuario" value="${idTutor}"/>
+                                <input type="hidden" name="_idCiclo" value="${idCiclo}"/>
+                                <input class="botonAltaAlumno" type="submit" value="Alta alumnos" class="pure-menu-link">
+                            </form>
+                        </li>
                         <li class="pure-menu-item"><a href="${contexto}/EleccionTutor?op=borrar" class="pure-menu-link">Borra alumnos</a></li>
                         <li class="pure-menu-item"><a href="${contexto}/EleccionTutor?op=listar" class="pure-menu-link">Lista alumnos</a></li>
                         <li class="pure-menu-item"><a href="${contexto}" class="pure-menu-link">Salir</a></li>

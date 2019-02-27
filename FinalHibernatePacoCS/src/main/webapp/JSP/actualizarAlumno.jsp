@@ -23,26 +23,14 @@
 
             <div id="menu">
                 <div class="pure-menu">
-                    <a class="pure-menu-heading" href="#">ESR</a>
+                    <a class="pure-menu-heading" href="#">ALUMNO</a>
 
                     <ul class="pure-menu-list">
-                        <li class="pure-menu-item"><a href="${contexto}/EleccionTutor?op=inicio" class="pure-menu-link">Inicio</a></li>
                         <li class="pure-menu-item">
-                            <form action="${contexto}/EleccionTutor?op=actualizar" method="post">
-                                <input type="hidden" name="_idUsuario" value="${idTutor}"/>
-                                <input type="hidden" name="_idCiclo" value="${idCiclo}"/>
-                                <input class="botonAltaAlumno" type="submit" value="Asignar Notas" class="pure-menu-link">
-                            </form>
+                            <a href="${contexto}" class="pure-menu-link">Inicio</a>
                         </li>
-                        <li class="pure-menu-item">
-                            <form action="${contexto}/EleccionTutor?op=alta" method="post">
-                                <input type="hidden" name="_idUsuario" value="${idTutor}"/>
-                                <input type="hidden" name="_idCiclo" value="${idCiclo}"/>
-                                <input class="botonAltaAlumno" type="submit" value="Alta alumnos" class="pure-menu-link">
-                            </form>
-                        </li>
-                        <li class="pure-menu-item"><a href="${contexto}/EleccionTutor?op=borrar" class="pure-menu-link">Borra alumnos</a></li>
-                        <li class="pure-menu-item"><a href="${contexto}/EleccionTutor?op=listar" class="pure-menu-link">Lista alumnos</a></li>
+                        <li class="pure-menu-item menu-item-divided pure-menu-selected"><a href="${contexto}/EleccionAlumno?op=actualizar" class="pure-menu-link">Actualizar</a></li>
+                        <li class="pure-menu-item"><a href="${contexto}/EleccionAlumno?op=listar" class="pure-menu-link">Lista notas</a></li>
                         <li class="pure-menu-item"><a href="${contexto}" class="pure-menu-link">Salir</a></li>
                     </ul>
                 </div>
@@ -62,12 +50,13 @@
 
                 <div class="content">
                     <h2 class="content-subhead">Registrar</h2>
-                    <form class="pure-form pure-form-aligned" method="post" action="Controlador?op=addAlumno">
+                    <form class="pure-form pure-form-aligned" method="post" action="Conclusion?op=AlumnoActualizar">
+                        <input type="hidden" name="idUsuario" />
                         <fieldset>
                             <legend>Formulario de registro de un alumno</legend>
                             <div class="pure-control-group">
                                 <label for="name">Nombre</label>
-                                <input name="nombre" id="name" type="text" placeholder="Nombre">
+                                <input name="nombre" id="name" type="text">
                             </div>
 
                             <div class="pure-control-group">

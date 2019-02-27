@@ -42,7 +42,7 @@ public class Ciclo implements Serializable {
     @Column(name = "Nombre")
     protected String nombre;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "ciclosmodulos",
             joinColumns = @JoinColumn(name = "IdCiclo"),
             inverseJoinColumns = @JoinColumn(name = "IdModulo"))

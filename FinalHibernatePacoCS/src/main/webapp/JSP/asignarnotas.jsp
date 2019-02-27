@@ -62,59 +62,32 @@
 
                 <div class="content">
                     <h2 class="content-subhead">Registrar</h2>
-                    <form class="pure-form pure-form-aligned" method="post" action="Controlador?op=addAlumno">
+                    <form class="pure-form pure-form-aligned" method="post" action="Conclusion?op=updateAlumno">
+                        <input type="hidden" name="idUsuario" value="${usuarioelegido.idUsuario}"/>
                         <fieldset>
-                            <legend>Formulario de registro de un alumno</legend>
+                            <legend>Formulario de asignación de notas del alumno: ${usuarioelegido.apellidos}, ${usuarioelegido.nombre}</legend>
                             <div class="pure-control-group">
                                 <label for="name">Nombre</label>
-                                <input name="nombre" id="name" type="text" placeholder="Nombre">
+                                <input name="nombre" id="name" type="text" value="${usuarioelegido.nombre}">
                             </div>
 
                             <div class="pure-control-group">
                                 <label for="apellidos">Apellidos</label>
-                                <input name="apellidos" id="apellidos" type="text" placeholder="Apellidos">
+                                <input name="apellidos" id="apellidos" type="text" value="${usuarioelegido.apellidos}">
                             </div>
 
                             <div class="pure-control-group">
                                 <label for="dni">DNI</label>
-                                <input name="dni" id="dni" type="text" placeholder="DNI">
-                            </div>
-
-                            <div class="pure-control-group">
-                                <label for="password">Contraseña</label>
-                                <input name="password" id="password" type="password" placeholder="Contraseña">
-                            </div>
-
-                            <div class="pure-control-group">
-                                <label for="rpassword">Repite contraseña</label>
-                                <input name="rpassword" id="rpassword" type="password" placeholder="Repite contraseña">
+                                <input name="dni" id="dni" type="text" value="${usuarioelegido.nif}">
                             </div>
 
                             <div class="pure-control-group">
                                 <label for="email">Email</label>
-                                <input name="email" id="email" type="email" placeholder="Email">
+                                <input name="email" id="email" type="email" value="${usuarioelegido.email}">
                             </div>
+                            
 
-                            <div class="pure-control-group">
-                                <label for="fechanacimiento">Fecha de nacimiento</label>
-                                <input name="fechanacimiento" id="fechanacimiento" type="date">
-                            </div>
-
-                            <div class="pure-control-group">
-                                <label for="genero">Género</label>
-                                <select name="genero" id="genero">
-                                    <option value="generos" selected disabled>Generos</option>
-                                    <option value="HOMBRE">Hombre</option>
-                                    <option value="MUJER">Mujer</option>
-                                </select>
-                            </div>
-
-                            <div class="pure-control-group">
-                                <label for="ciclo">Ciclo</label>
-                                <span><strong>${cicloTutor.nombre}</strong></span>
-                                <input type="hidden" name="ciclo" value="${cicloTutor.idCiclo}/${cicloTutor.abreviatura}/${cicloTutor.horasFCT}/${cicloTutor.ley}/${cicloTutor.nombre}">
-                            </div>
-                            <!--<div class="content">
+                            <div class="content">
                                 <table class="pure-table pure-table-horizontal">
                                     <thead>
                                         <tr>
@@ -144,7 +117,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>-->
+                            </div>
 
                             <div class="pure-controls">
                                 <button type="submit" name="enviar" class="pure-button pure-button-primary">Enviar</button>

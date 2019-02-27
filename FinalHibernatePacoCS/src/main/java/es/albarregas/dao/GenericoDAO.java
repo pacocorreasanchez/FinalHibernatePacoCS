@@ -5,7 +5,6 @@
  */
 package es.albarregas.dao;
 
-import es.albarregas.beans.Usuario;
 import es.albarregas.exceptions.BussinessException;
 import es.albarregas.persistencia.HibernateUtil;
 
@@ -104,7 +103,6 @@ public class GenericoDAO<T> implements IGenericoDAO<T> {
         }
     }
 
-    //from Cat where name='Fritz'
     @Override
     public <T> List<T> getWhere(String whereClause, Class<T> claseEntidad) {
         List<T> objetosRecuperado = null;
@@ -112,12 +110,13 @@ public class GenericoDAO<T> implements IGenericoDAO<T> {
             startTransaction();
             Query query = sesion.createQuery("from " + claseEntidad.getSimpleName()+ " WHERE " + whereClause);
             objetosRecuperado = query.list();
+            System.out.println(query.toString());
         } catch(HibernateException he){
             this.handleExcepcion(he);
         } finally {
             this.endTransaction();
         }
         return objetosRecuperado;
-}
+    }
     
  }

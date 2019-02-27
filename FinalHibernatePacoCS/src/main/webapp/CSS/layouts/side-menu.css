@@ -252,3 +252,20 @@ Hides the menu at `48em`, but modify this based on your app's needs.
         left: 150px;
     }
 }
+
+
+.botonAltaAlumno{
+    background-color: transparent;
+    color: #999;
+    border: none;
+    padding: 0.6em 0 0.6em 0.6em;
+}
+.botonAltaAlumno:hover{
+    background-color: #333;
+    width: 100%;
+    text-align: left;
+}
+
+*{
+    outline: 0;
+}

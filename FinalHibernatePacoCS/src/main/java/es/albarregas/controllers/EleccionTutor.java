@@ -11,6 +11,8 @@ import es.albarregas.beans.Modulo;
 import es.albarregas.dao.IGenericoDAO;
 import es.albarregas.daofactory.DAOFactory;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,28 +43,38 @@ public class EleccionTutor extends HttpServlet {
 
         DAOFactory daof = DAOFactory.getDAOFactory();
         IGenericoDAO gdao = daof.getGenericoDAO();
-        
+
         HttpSession sesion = request.getSession();
+
+        if (request.getParameter("op").equals("actualizar") || request.getParameter("op").equals("listar")) {
+            Set<Alumno> listadoAlumnos = gdao.get("Alumno");
+            sesion.setAttribute("listadoAlumnos", listadoAlumnos);
+        }
+
+        if (request.getParameter("op").equals("actualizar") || request.getParameter("op").equals("alta")) {
+            Set<Modulo> listadoModulos = null;
+            List<Ciclo> ciclos = (ArrayList<Ciclo>) gdao.getWhere("IdCiclo = '" + request.getParameter("_idCiclo") + "'", Ciclo.class);
+            Ciclo ciclo = ciclos.get(0);
+            listadoModulos = ciclo.getModulos();
+            sesion.setAttribute("listadoModulos", listadoModulos);
+            sesion.setAttribute("cicloTutor", ciclo);
+        }
 
         switch (request.getParameter("op")) {
             case "actualizar":
-                url="JSP/.jsp";
+                url = "JSP/elegirAlumno.jsp";
                 break;
-                case "alta":
-                    Set<Ciclo> listadoCiclos = gdao.get("Ciclo");
-                    sesion.setAttribute("listadoCiclos", listadoCiclos);
-                    Set<Modulo> listadoModulos = gdao.get("Modulo");
-                    sesion.setAttribute("listadoModulos", listadoModulos);
-                    url="JSP/formularioRegistroTutor.jsp";
+            case "alta":
+                url = "JSP/formularioRegistroTutor.jsp";
                 break;
-                case "borrar":
-                url="JSP/.jsp";
+            case "borrar":
+                url = "JSP/.jsp";
                 break;
-                case "listar":
-                    Set<Alumno> listadoAlumnos = gdao.get("Alumno");
-                    sesion.setAttribute("listadoAlumnos", listadoAlumnos);
-                    url="JSP/listadoAlumnos.jsp";
+            case "listar":
+                url = "JSP/listadoAlumnos.jsp";
                 break;
+            case "inicio":
+                url = "JSP/subIndexTutor.jsp";
         }
 
         request.getRequestDispatcher(url).forward(request, response);

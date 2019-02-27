@@ -5,6 +5,7 @@
  */
 package es.albarregas.controllers;
 
+import es.albarregas.beans.Alumno;
 import es.albarregas.beans.Ciclo;
 import es.albarregas.beans.Tutor;
 import es.albarregas.dao.IGenericoDAO;
@@ -42,9 +43,12 @@ public class EleccionAlumno extends HttpServlet {
         IGenericoDAO gdao = daof.getGenericoDAO();
         
         HttpSession sesion = request.getSession();
+        Alumno alumno = null;
         
         switch (request.getParameter("op")) {
             case "actualizar":
+                alumno = (Alumno) gdao.getById(Integer.parseInt(request.getParameter("idUsuario")), Alumno.class);
+                sesion.setAttribute("alumno", alumno);
                 url="JSP/actualizarAlumno.jsp";
                     break;
                 case "listar":

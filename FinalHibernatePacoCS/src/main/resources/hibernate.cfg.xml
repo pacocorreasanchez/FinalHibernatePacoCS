@@ -16,5 +16,6 @@
     <mapping class="es.albarregas.beans.Tutor" />
     <mapping class="es.albarregas.beans.Administrador" />
     <mapping class="es.albarregas.beans.Alumno" />
+    <mapping class="es.albarregas.beans.Nota" />
   </session-factory>
 </hibernate-configuration>

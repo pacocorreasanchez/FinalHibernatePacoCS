@@ -19,12 +19,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -51,8 +55,11 @@ public class Controlador extends HttpServlet {
 
         List<String> retorno = new ArrayList<>();
 
-        Usuario usuario;
-        Ciclo ciclo;
+        Usuario usuario = null;
+        Ciclo ciclo = null;
+        ArrayList<Ciclo> ciclos = null;
+
+        HttpSession sesion = request.getSession();
 
         switch (request.getParameter("op")) {
             case "acceso":
@@ -70,29 +77,24 @@ public class Controlador extends HttpServlet {
                             url = "JSP/subIndexAdmin.jsp";
                         } else if (user.getRol().equals(Rol.TUTOR)) {
                             url = "JSP/subIndexTutor.jsp";
+                            Tutor tutor = (Tutor) gdao.getById(user.getIdUsuario(), Tutor.class);
+                            sesion.setAttribute("idTutor", tutor.getIdUsuario());
+                            sesion.setAttribute("idCiclo", tutor.getCiclo().getIdCiclo());
                         } else {
                             url = "JSP/subIndexAlumno.jsp";
                         }
                     }
                 }
+
                 break;
             case "addTutor":
                 String cicloForm = request.getParameter("ciclo");
                 String[] parts = cicloForm.split("/");
                 String id = parts[0];
-                String abreviatura = parts[1];
-                String horas = parts[2];
-                String ley = parts[3];
-                String nombre = parts[4];
 
                 Tutor tutor = new Tutor();
-                ciclo = new Ciclo();
-
-                ciclo.setIdCiclo(id);
-                ciclo.setAbreviatura(abreviatura);
-                ciclo.setHorasFCT(Integer.parseInt(horas));
-                ciclo.setLey(ley);
-                ciclo.setNombre(nombre);
+                ciclos = (ArrayList<Ciclo>) gdao.getWhere(" IdCiclo = '" + id + "'", Ciclo.class);
+                ciclo = ciclos.get(0);
 
                 tutor.setNombre(request.getParameter("nombre"));
                 tutor.setApellidos(request.getParameter("apellidos"));
@@ -117,20 +119,12 @@ public class Controlador extends HttpServlet {
                 String cicloFormAlum = request.getParameter("ciclo");
                 String[] parts1 = cicloFormAlum.split("/");
                 String id1 = parts1[0];
-                String abreviatura1 = parts1[1];
-                String horas1 = parts1[2];
-                String ley1 = parts1[3];
-                String nombre1 = parts1[4];
 
                 Alumno alumno = new Alumno();
-                ciclo = new Ciclo();
                 try {
-                    ciclo.setIdCiclo(id1);
-                    ciclo.setAbreviatura(abreviatura1);
-                    ciclo.setHorasFCT(Integer.parseInt(horas1));
-                    ciclo.setLey(ley1);
-                    ciclo.setNombre(nombre1);
-                    
+                    ciclos = (ArrayList<Ciclo>) gdao.getWhere(" IdCiclo = '" + id1 + "'", Ciclo.class);
+                    ciclo = ciclos.get(0);
+
                     alumno.setRol(Rol.ALUMNO);
                     alumno.setCiclo(ciclo);
                     alumno.setNombre(request.getParameter("nombre"));
@@ -141,12 +135,13 @@ public class Controlador extends HttpServlet {
                     alumno.setEmail(request.getParameter("email"));
                     alumno.setUltimoAcceso(new Date());
                     alumno.setGenero(request.getParameter("genero"));
-                    
+
                     //Se pasa a Date la fecha recibida y después se pasa a Calendar con el método setTime()                    
                     String s = request.getParameter("fechanacimiento");
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     Date dateBorn = sdf.parse(s);
                     alumno.setFechaNacimiento(dateBorn);
+
                     
                 } catch (ParseException ex) {
                     ex.printStackTrace();
@@ -160,6 +155,11 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("error", retorno);
                     url = "JSP/subIndexTutor.jsp";
                 }
+                break;
+            case "updateAlumno":
+                usuario = (Usuario) gdao.getById(Integer.parseInt(request.getParameter("seleccionado")), Usuario.class);
+                sesion.setAttribute("usuarioelegido", usuario);
+                url="JSP/asignarnotas.jsp";
                 break;
         }
 
