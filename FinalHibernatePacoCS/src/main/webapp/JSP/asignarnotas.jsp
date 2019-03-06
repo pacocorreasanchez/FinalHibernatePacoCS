@@ -23,7 +23,7 @@
 
             <div id="menu">
                 <div class="pure-menu">
-                    <a class="pure-menu-heading" href="#">ESR</a>
+                    <a class="pure-menu-heading" href="#">${user.nombre}</a>
 
                     <ul class="pure-menu-list">
                         <li class="pure-menu-item"><a href="${contexto}/EleccionTutor?op=inicio" class="pure-menu-link">Inicio</a></li>
@@ -65,28 +65,8 @@
                     <form class="pure-form pure-form-aligned" method="post" action="Conclusion?op=updateAlumno">
                         <input type="hidden" name="idUsuario" value="${usuarioelegido.idUsuario}"/>
                         <fieldset>
-                            <legend>Formulario de asignación de notas del alumno: ${usuarioelegido.apellidos}, ${usuarioelegido.nombre}</legend>
-                            <div class="pure-control-group">
-                                <label for="name">Nombre</label>
-                                <input name="nombre" id="name" type="text" value="${usuarioelegido.nombre}">
-                            </div>
-
-                            <div class="pure-control-group">
-                                <label for="apellidos">Apellidos</label>
-                                <input name="apellidos" id="apellidos" type="text" value="${usuarioelegido.apellidos}">
-                            </div>
-
-                            <div class="pure-control-group">
-                                <label for="dni">DNI</label>
-                                <input name="dni" id="dni" type="text" value="${usuarioelegido.nif}">
-                            </div>
-
-                            <div class="pure-control-group">
-                                <label for="email">Email</label>
-                                <input name="email" id="email" type="email" value="${usuarioelegido.email}">
-                            </div>
+                            <legend>Formulario de asignación de notas del alumno:</legend>
                             
-
                             <div class="content">
                                 <table class="pure-table pure-table-horizontal">
                                     <thead>

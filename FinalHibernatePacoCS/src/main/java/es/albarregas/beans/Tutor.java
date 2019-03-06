@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Tutor extends Usuario{
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     protected Ciclo ciclo;
     
     public Tutor() {

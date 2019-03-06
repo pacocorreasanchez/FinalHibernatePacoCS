@@ -68,7 +68,7 @@ public class EleccionTutor extends HttpServlet {
                 url = "JSP/formularioRegistroTutor.jsp";
                 break;
             case "borrar":
-                url = "JSP/.jsp";
+                url = "JSP/elegirAlumnoBorrar.jsp";
                 break;
             case "listar":
                 url = "JSP/listadoAlumnos.jsp";

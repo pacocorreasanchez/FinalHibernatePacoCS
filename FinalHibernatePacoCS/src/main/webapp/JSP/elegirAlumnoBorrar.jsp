@@ -41,7 +41,7 @@
                                 <input class="botonAltaAlumno" type="submit" value="Alta alumnos" class="pure-menu-link">
                             </form>
                         </li>
-                        <li class="pure-menu-item"><a href="${contexto}/EleccionTutor?op=borrar" class="pure-menu-link">Borra alumnos</a></li>
+                        <li class="pure-menu-item  menu-item-divided pure-menu-selected"><a href="${contexto}/EleccionTutor?op=borrar" class="pure-menu-link">Borra alumnos</a></li>
                         <li class="pure-menu-item"><a href="${contexto}/EleccionTutor?op=listar" class="pure-menu-link">Lista alumnos</a></li>
                         <li class="pure-menu-item"><a href="${contexto}" class="pure-menu-link">Salir</a></li>
                     </ul>
@@ -61,8 +61,8 @@
                 </div>
 
                 <div class="content">
-                    <h2 class="content-subhead">Elige un alumno para actualiar y asignar notas</h2>
-                    <form method="post" action="Controlador?op=updateAlumno">
+                    <h2 class="content-subhead">Elige un alumno para borrarlo</h2>
+                    <form method="post" action="Controlador?op=deleteAlumno">
                             <table>
                                 <c:forEach var="item" items="${listadoAlumnos}">
                                     <tr>
@@ -72,7 +72,7 @@
                                 </c:forEach>
                             </table>
                         <div class="pure-controls">
-                            <button type="submit" name="enviar" class="pure-button pure-button-primary">Enviar</button>
+                            <button type="submit" name="enviar" class="pure-button pure-button-primary">Borrar</button>
                         </div>
                     </form>
                 </div>

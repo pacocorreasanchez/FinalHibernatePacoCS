@@ -26,7 +26,7 @@
 
             <div id="menu">
                 <div class="pure-menu">
-                    <a class="pure-menu-heading" href="#">TUTOR</a>
+                    <a class="pure-menu-heading" href="#">${user.nombre}</a>
 
                     <ul class="pure-menu-list">
                         <li class="pure-menu-item"><a href="${contexto}/EleccionTutor?op=inicio" class="pure-menu-link">Inicio</a></li>

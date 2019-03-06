@@ -25,7 +25,7 @@
 
             <div id="menu">
                 <div class="pure-menu">
-                    <a class="pure-menu-heading" href="#">ADMIN</a>
+                    <a class="pure-menu-heading" href="#">${user.nombre}</a>
 
                     <ul class="pure-menu-list">
                         <li class="pure-menu-item menu-item-divided pure-menu-selected"><a href="${contexto}/JSP/subIndexAdmin.jsp" class="pure-menu-link">Inicio</a></li>

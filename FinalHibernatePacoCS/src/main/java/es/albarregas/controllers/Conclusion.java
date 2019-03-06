@@ -65,6 +65,7 @@ public class Conclusion extends HttpServlet {
                 alumno.setApellidos(request.getParameter("apellidos"));
                 alumno.setNif(request.getParameter("dni"));
                 alumno.setEmail(request.getParameter("email"));
+                alumno.setRepitePassword(alumno.getPassword());
                 
                 //recorrer las notas e insertarlas en el listado de notas del bean alumno
                     List<Nota> listaDeNotas = new ArrayList<>();

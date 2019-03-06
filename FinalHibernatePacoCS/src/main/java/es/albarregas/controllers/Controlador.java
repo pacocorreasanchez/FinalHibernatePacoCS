@@ -56,6 +56,7 @@ public class Controlador extends HttpServlet {
         List<String> retorno = new ArrayList<>();
 
         Usuario usuario = null;
+        Alumno alumno = null;
         Ciclo ciclo = null;
         ArrayList<Ciclo> ciclos = null;
 
@@ -68,7 +69,7 @@ public class Controlador extends HttpServlet {
                 usuario.setPassword(request.getParameter("password"));
 
                 List<Usuario> usuariosLogin;
-                usuariosLogin = (List<Usuario>) gdao.getWhere("Email='" + request.getParameter("email") + "'", Usuario.class);
+                usuariosLogin = (List<Usuario>) gdao.getWhere("Email='" + request.getParameter("email")+"'"+" AND Password='" +request.getParameter("password") +"'", Usuario.class);
 
                 for (Usuario user : usuariosLogin) {
                     System.out.println(user.getRol());
@@ -84,6 +85,7 @@ public class Controlador extends HttpServlet {
                             url = "JSP/subIndexAlumno.jsp";
                         }
                     }
+                    sesion.setAttribute("user", user);
                 }
 
                 break;
@@ -120,7 +122,7 @@ public class Controlador extends HttpServlet {
                 String[] parts1 = cicloFormAlum.split("/");
                 String id1 = parts1[0];
 
-                Alumno alumno = new Alumno();
+                alumno = new Alumno();
                 try {
                     ciclos = (ArrayList<Ciclo>) gdao.getWhere(" IdCiclo = '" + id1 + "'", Ciclo.class);
                     ciclo = ciclos.get(0);
@@ -161,6 +163,12 @@ public class Controlador extends HttpServlet {
                 sesion.setAttribute("usuarioelegido", usuario);
                 url="JSP/asignarnotas.jsp";
                 break;
+                
+            case "deleteAlumno":
+                alumno = (Alumno) gdao.getById(Integer.parseInt(request.getParameter("seleccionado")), Alumno.class);
+                alumno.setCiclo(null);
+                gdao.delete(alumno);
+                url="JSP/elegirAlumnoBorrar.jsp";
         }
 
         request.getRequestDispatcher(url).forward(request, response);

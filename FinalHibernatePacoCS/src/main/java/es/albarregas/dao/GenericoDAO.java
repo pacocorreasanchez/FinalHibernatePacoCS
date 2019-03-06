@@ -110,7 +110,6 @@ public class GenericoDAO<T> implements IGenericoDAO<T> {
             startTransaction();
             Query query = sesion.createQuery("from " + claseEntidad.getSimpleName()+ " WHERE " + whereClause);
             objetosRecuperado = query.list();
-            System.out.println(query.toString());
         } catch(HibernateException he){
             this.handleExcepcion(he);
         } finally {
